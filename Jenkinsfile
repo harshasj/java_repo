@@ -1,18 +1,21 @@
+@Library('abcd') _
+
 pipeline{
 	agent any
       stages{
            stage('Checkout'){
 	    
                steps{
-		 echo 'cloning..'
-                 git 'https://github.com/akshu20791/DevOpsClassCodes.git'
+                   sh 'echo ${env.gitlabSourceBranch} '
+                   code('${env.gitlabSourceBranch}','https://github.com/Athulkrishnaur/DevOpsClassCodes.git')
+                   //git("https://github.com/Athulkrishnaur/DevOpsClassCodes.git")
               }
           }
           stage('Compile'){
              
               steps{
                   echo 'compiling..'
-                  sh 'mvn compile'
+                  sh 'ls'
 	      }
           }
           stage('CodeReview'){
